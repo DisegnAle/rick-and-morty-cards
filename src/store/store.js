@@ -6,10 +6,25 @@ import endpoints from '../assets/js/endpoints'
 import Router from 'vue-router'
 import router from '../router'
 import TYPES from './types'
+import ElementUI from 'element-ui'
+import { Notification } from 'element-ui';
 
+Vue.use(ElementUI)
 Vue.use(Router)
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
+
+function hasWhiteSpace(s) {
+  return s.indexOf(' ') >= 0;
+}
+
+function getGivenName(fullCharacterName){
+  const str = fullCharacterName;
+  if(hasWhiteSpace(str)){
+    return str.substr(0,str.indexOf(' '));
+  }
+  return fullCharacterName;
+}
 
 function redirectToDetailView (characterId) {
   router.push({
@@ -28,6 +43,14 @@ function remappedCharacterEpisodes (characterEpisodes) {
   return characterEpisodes.map(episode => {
     return episode.name
   })
+}
+
+function showAlert(){
+  Notification.warning({
+    title: 'Warning',
+    message: 'No episode details about this character were found',
+    type: 'warning'
+  });
 }
 
 export default new Vuex.Store({
@@ -64,7 +87,8 @@ export default new Vuex.Store({
     selectCharacter: ({
       commit
     }, selectedCharacter) => {
-      const url = `${endpoints.episodes}/?id=${selectedCharacter.id}`
+      const giveName = getGivenName(selectedCharacter.name);
+      const url = `${endpoints.episodes}/?name=${giveName}`
       Vue.axios.get(url)
         .then((response) => {
           commit(TYPES.SET_SELECTED_CHARACTER, {
@@ -75,7 +99,7 @@ export default new Vuex.Store({
         .then(() => {
           redirectToDetailView(selectedCharacter.id)
         }).catch(errors => {
-          console.log(errors)
+          showAlert();
         })
     }
   }
