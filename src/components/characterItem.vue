@@ -1,9 +1,9 @@
 <template>
 <el-row class="container__character">
-    <el-col :span="10">
+    <el-col :xs="24" :sm="24" :md="10" :lg="10" :xl="10" >
         <img :src="characterInfo.image">
     </el-col>
-    <el-col :span="14" class="characterCard__ContentWrapper">
+    <el-col :xs="24" :sm="24" :md="14" :lg="14" :xl="14" class="characterCard__ContentWrapper">
 
         <!-- name/status -->
         <div class="section">
