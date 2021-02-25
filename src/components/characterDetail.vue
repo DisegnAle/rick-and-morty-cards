@@ -15,7 +15,7 @@
                         <div class="section">
                             <span class="text-gray">Appears in episodes:</span>
                             <el-row class="mt-05" :gutter="30">
-                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" v-for="episode in selectedCharacter.episode" v-bind:key="episode">
+                                <el-col class="ml-02" :xs="24" :sm="24" :md="24" :lg="12" :xl="12" v-for="episode in selectedCharacter.episode" v-bind:key="episode">
                                     <li>
                                         {{episode}}
                                     </li>
@@ -55,4 +55,8 @@ export default {
 
 <style lang="less" scoped>
 @import url('../assets/style/characters.less');
+
+.ml-02 {
+    margin-left: 0.2em;
+}
 </style>
