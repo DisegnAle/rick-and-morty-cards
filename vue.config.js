@@ -1,4 +1,6 @@
 module.exports = {
   lintOnSave: false,
-  publicPath: '/ca-assignment/'
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/ca-assignment/'
+    : '/'
 }

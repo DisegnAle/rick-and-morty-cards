@@ -13,7 +13,7 @@
                 <div class="section">
                     <span class="text-gray">Appears in episodes:</span>
                     <el-row class="mt-05" :gutter="30">
-                        <el-col :span="12" v-for="episode in selectedCharacter.episode" v-bind:key="episode">
+                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"  v-for="episode in selectedCharacter.episode" v-bind:key="episode">
                             <li>
                                 {{episode}}
                             </li>
