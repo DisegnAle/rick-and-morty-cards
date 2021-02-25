@@ -10,16 +10,20 @@
     <el-row>
         <el-col>
             <character-item :characterInfo="selectedCharacter">
-                <div class="section">
-                    <span class="text-gray">Appears in episodes:</span>
-                    <el-row class="mt-05" :gutter="30">
-                        <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12"  v-for="episode in selectedCharacter.episode" v-bind:key="episode">
-                            <li>
-                                {{episode}}
-                            </li>
-                        </el-col>
-                    </el-row>
-                </div>
+                <el-row>
+                    <el-col>
+                        <div class="section">
+                            <span class="text-gray">Appears in episodes:</span>
+                            <el-row class="mt-05" :gutter="30">
+                                <el-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12" v-for="episode in selectedCharacter.episode" v-bind:key="episode">
+                                    <li>
+                                        {{episode}}
+                                    </li>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </el-col>
+                </el-row>
             </character-item>
         </el-col>
     </el-row>
@@ -29,22 +33,22 @@
 <script>
 import characterItem from './characterItem.vue'
 export default {
-  components: {
-    characterItem
-  },
-  name: 'CharacterDetail',
-  methods: {
-    redirectToList () {
-      this.$router.push({
-        name: 'characters-list'
-      })
+    components: {
+        characterItem
+    },
+    name: 'CharacterDetail',
+    methods: {
+        redirectToList() {
+            this.$router.push({
+                name: 'characters-list'
+            })
+        }
+    },
+    computed: {
+        selectedCharacter() {
+            return this.$store.state.selectedCharacter
+        }
     }
-  },
-  computed: {
-    selectedCharacter () {
-      return this.$store.state.selectedCharacter
-    }
-  }
 
 }
 </script>
