@@ -1,4 +1,6 @@
-# assignment
+# Ricky and Morty cards project
+
+Project developed with Vue to experiment with some VueJs features
 
 ## Project setup
 ```
